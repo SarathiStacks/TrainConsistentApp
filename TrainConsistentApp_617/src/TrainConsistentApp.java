@@ -1,5 +1,24 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+// Bogie class (Custom Object)
+class Bogie {
+    String name;
+    int capacity;
+
+    // Constructor
+    public Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    // toString() for clean output
+    @Override
+    public String toString() {
+        return name + " -> Capacity: " + capacity;
+    }
+}
 
 public class TrainConsistentApp {
 
@@ -8,22 +27,25 @@ public class TrainConsistentApp {
         // Step 1: Welcome message
         System.out.println("=== Train Consist Management App ===");
 
-        // Step 2: Create HashMap for bogie-capacity mapping
-        Map<String, Integer> bogieCapacityMap = new HashMap<>();
+        // Step 2: Create List of Bogie objects
+        List<Bogie> bogies = new ArrayList<>();
 
-        // Step 3: Add bogie capacities
-        bogieCapacityMap.put("Sleeper", 72);
-        bogieCapacityMap.put("AC Chair", 50);
-        bogieCapacityMap.put("First Class", 24);
+        // Step 3: Add bogies with capacities
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 24));
 
-        // Step 4: Display capacity details
-        System.out.println("\nBogie Capacity Details:");
+        // Step 4: Sort bogies by capacity (ascending)
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
 
-        for (Map.Entry<String, Integer> entry : bogieCapacityMap.entrySet()) {
-            System.out.println(entry.getKey() + " -> Capacity: " + entry.getValue());
+        // Step 5: Display sorted bogies
+        System.out.println("\nBogies sorted by capacity:");
+
+        for (Bogie b : bogies) {
+            System.out.println(b);
         }
 
-        // Step 5: Continue program
-        System.out.println("\nCapacity mapping completed successfully.");
+        // Step 6: Continue program
+        System.out.println("\nSorting completed successfully.");
     }
 }
